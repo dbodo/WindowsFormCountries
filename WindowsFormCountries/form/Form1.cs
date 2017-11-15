@@ -138,19 +138,44 @@ namespace form
                     break;
             }
         }
-        private void tbPretraži_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
+
+ 
 
         private void btnPretrazi_Click(object sender, EventArgs e)
         {
-
+            string sPretrazi = (string)tbPretrazi.Text;
+            dataGridViewCountries.DataSource = lCountries.Where(o => o.sName.Contains(sPretrazi)).ToList();
         }
 
         private void tabPage1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void laKod_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bSpremi_Click(object sender, EventArgs e)
+        {
+                string code = (string)tbKod.Text;
+                string name = (string)tbNaziv.Text;
+                string capital = (string)tbGlavniGrad.Text;
+                int population = int.Parse((string)tbBrojStanovnika.Text);
+                float area = float.Parse((string)tbPovršina.Text);
+                string region = (string)tbKontinent.Text;
+                //Dodavanje objekata u listu
+                lCountries.Add(new Country
+                {
+                    sCode = code,
+                    sName = name,
+                    sCapital = capital,
+                    nPopulation = population,
+                    fArea = area,
+                    sRegion = region,
+                });           
+              dataGridViewCountries.DataSource = lCountries;
         }
     }
 }
